@@ -10,10 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^8.0.0",
     "@tailwindcss/vite": "^4.1.14",
+    "axios": "^1.12.2",
+    "framer-motion": "^12.23.22",
+    "lucide-react": "^0.545.0",
     "react": "^19.1.1",
+    "react-confetti": "^6.4.0",
     "react-dom": "^19.1.1",
-    "tailwindcss": "^4.1.14"
+    "react-hot-toast": "^2.6.0",
+    "react-router": "^7.9.4",
+    "recharts": "^3.2.1",
+    "tailwindcss": "^4.1.14",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
