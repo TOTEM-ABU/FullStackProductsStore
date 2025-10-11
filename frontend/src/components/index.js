@@ -1,2 +1,6 @@
 export { default as Navbar } from "./Navbar";
 export { default as LoadingSpinner } from "./LoadingSpinner";
+export { default as CategoryItem } from "./CategoryItem";
+export { default as CreateProductForm } from "./CreateProductForm";
+export { default as ProductsList } from "./ProductsList";
+export { default as AnalyticsTab } from "./AnalyticsTab";

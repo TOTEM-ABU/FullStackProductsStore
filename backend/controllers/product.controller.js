@@ -1,4 +1,5 @@
 import { redis } from "../lib/redis.js";
+import cloudinary from "../lib/cloudinary.js";
 import Product from "../models/product.model.js";
 
 export const getAllProducts = async (req, res) => {
@@ -54,6 +55,8 @@ export const createProduct = async (req, res) => {
         : "",
       category,
     });
+
+    await product.save();
 
     res.status(201).json(product);
   } catch (error) {
