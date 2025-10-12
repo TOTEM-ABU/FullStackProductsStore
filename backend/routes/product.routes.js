@@ -4,7 +4,7 @@ import {
   deleteProduct,
   getAllProducts,
   getFeaturedProducts,
-  getRecomendedProducts,
+  getRecommendedProducts,
   getProductsByCategory,
   toggleFeaturedProduct,
 } from "../controllers/product.controller.js";
@@ -19,6 +19,6 @@ router.patch("/:id", protectRoute, adminRoute, toggleFeaturedProduct);
 router.delete("/:id", protectRoute, adminRoute, deleteProduct);
 router.get("/featured", getFeaturedProducts);
 router.get("/category/:category", getProductsByCategory);
-router.get("/recomendations", getRecomendedProducts);
+router.get("/recommendations", getRecommendedProducts);
 
 export default router;
