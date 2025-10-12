@@ -9,7 +9,7 @@ export const addToCart = async (req, res) => {
     if (existingItem) {
       existingItem.quantity += 1;
     } else {
-      user.cartItems.oush(productId);
+      user.cartItems.push(productId);
     }
 
     await user.save();
@@ -39,16 +39,14 @@ export const removeAllFromCart = async (req, res) => {
 
 export const updateQuantity = async (req, res) => {
   try {
-    const { id: productdId } = req.params;
+    const { id: productId } = req.params;
     const { quantity } = req.body;
     const user = req.user;
-    const existingItem = user.cartItems.find((item) => item.id === productdId);
+    const existingItem = user.cartItems.find((item) => item.id === productId);
 
     if (existingItem) {
       if (quantity === 0) {
-        user.cartItems = user.cartItems.filter(
-          (item) => item.id !== productdId
-        );
+        user.cartItems = user.cartItems.filter((item) => item.id !== productId);
         await user.save();
         return res.json(user.cartItems);
       }

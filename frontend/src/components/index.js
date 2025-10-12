@@ -4,3 +4,4 @@ export { default as CategoryItem } from "./CategoryItem";
 export { default as CreateProductForm } from "./CreateProductForm";
 export { default as ProductsList } from "./ProductsList";
 export { default as AnalyticsTab } from "./AnalyticsTab";
+export { default as ProductCard } from "./ProductCard";
