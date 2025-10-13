@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router'
-import { HomePage, SignUpPage, LoginPage, AdminPage, CategoryPage, CartPage } from './pages'
+import { HomePage, SignUpPage, LoginPage, AdminPage, CategoryPage, CartPage, PurchaseSuccessPage, PurchaseCancelPage } from './pages'
 import { LoadingSpinner, Navbar } from './components'
 import { Toaster } from 'react-hot-toast'
 import { useUserStore } from './stores/useUserStore'
@@ -38,6 +38,8 @@ const App = () => {
           <Route path='/secret-dashboard' element={user?.role === "admin" ? <AdminPage /> : <Navigate to='/login' />} />
           <Route path='/category/:category' element={<CategoryPage />} />
           <Route path='/cart' element={user ? <CartPage /> : <Navigate to='/login' />} />
+          <Route path='/purchase-success' element={user ? <PurchaseSuccessPage /> : <Navigate to='/login' />} />
+          <Route path='/purchase-cancel' element={user ? <PurchaseCancelPage /> : <Navigate to='/login' />} />
         </Routes>
       </div>
       <Toaster />

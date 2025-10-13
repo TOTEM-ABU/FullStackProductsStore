@@ -36,6 +36,7 @@ export const createCheckoutSession = async (req, res) => {
         userId: req.user._id,
         isActive: true,
       });
+
       if (coupon) {
         totalAmount -= Math.round(
           (totalAmount * coupon.discountPercentage) / 100
@@ -43,19 +44,17 @@ export const createCheckoutSession = async (req, res) => {
       }
     }
 
+    const discounts = coupon
+      ? [{ coupon: await createStripeCoupon(coupon.discountPercentage) }]
+      : [];
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
+      discounts,
       success_url: `${process.env.CLIENT_URL}/purchase-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.CLIENT_URL}/purchase-cancel`,
-      discounts: coupon
-        ? [
-            {
-              coupon: await createStripeCoupon(coupon.discountPercentage),
-            },
-          ]
-        : [],
       metadata: {
         userId: req.user._id.toString(),
         couponCode: couponCode || "",
@@ -72,12 +71,17 @@ export const createCheckoutSession = async (req, res) => {
     if (totalAmount >= 20000) {
       await createNewCoupon(req.user._id);
     }
-    res.status(200).json({ id: session.id, totalAmount: totalAmount / 100 });
+
+    res.status(200).json({
+      url: session.url,
+      totalAmount: totalAmount / 100,
+    });
   } catch (error) {
     console.error("Error processing checkout:", error);
-    res
-      .status(500)
-      .json({ message: "Error processing checkout", error: error.message });
+    res.status(500).json({
+      message: "Error processing checkout",
+      error: error.message,
+    });
   }
 };
 
