@@ -9,3 +9,4 @@ export { default as CartItem } from "./CartItem";
 export { default as PeopleAlsoBought } from "./PeopleAlsoBought";
 export { default as OrderSummary } from "./OrderSummary";
 export { default as GiftCouponCard } from "./GiftCouponCard";
+export { default as FeaturedProducts } from "./FeaturedProducts";

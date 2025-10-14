@@ -52,16 +52,18 @@ export const getDailySalesData = async (startDate, endDate) => {
 
     const dateArray = getDatesInRange(startDate, endDate);
 
-    return dateArray.map((date) => {
+    const result = dateArray.map((date) => {
       const foundData = dailySalesData.find((item) => item._id === date);
-
       return {
         date,
         sales: foundData?.sales || 0,
         revenue: foundData?.revenue || 0,
       };
     });
+
+    return result;
   } catch (error) {
+    console.error("❌ Error in getDailySalesData:", error);
     throw error;
   }
 };
